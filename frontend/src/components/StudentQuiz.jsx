@@ -23,32 +23,43 @@ const StudentQuiz = ({ socket, onLeave }) => {
 
   useEffect(() => {
     if (socket) {
+      // Check if already connected and update state immediately
+      if (socket.connected) {
+        setConnected(true);
+      }
+
       socket.on('connect', () => {
+        console.log('[StudentQuiz] Connected to server');
         setConnected(true);
         setError('');
       });
 
       socket.on('disconnect', () => {
+        console.log('[StudentQuiz] Disconnected from server');
         setConnected(false);
         setLoggedIn(false);
       });
 
       socket.on('REGISTRATION_SUCCESS', (data) => {
+        console.log('[StudentQuiz] Registration success:', data);
         setLoggedIn(true);
         setStudentId(data.studentId);
         setLoading(false);
       });
 
       socket.on('REGISTRATION_FAILED', (data) => {
+        console.log('[StudentQuiz] Registration failed:', data);
         setError(data.message || 'Registration failed');
         setLoading(false);
       });
 
       socket.on('QUIZ_STARTED', () => {
+        console.log('[StudentQuiz] Quiz started');
         setQuizStarted(true);
       });
 
       socket.on('ERROR', (data) => {
+        console.log('[StudentQuiz] Error:', data);
         setError(data.message || 'An error occurred');
         setLoading(false);
       });

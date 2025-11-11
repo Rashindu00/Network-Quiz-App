@@ -16,7 +16,7 @@ import './AdminDashboard.css';
  * - Real-time event listeners
  * - Dynamic UI updates based on server state
  */
-const AdminDashboard = () => {
+const AdminDashboard = ({ socket, onViewLeaderboard }) => {
   const [connectedStudents, setConnectedStudents] = useState([]);
   const [quizStarted, setQuizStarted] = useState(false);
   const [serverStatus, setServerStatus] = useState('connected');
@@ -31,10 +31,39 @@ const AdminDashboard = () => {
    * This prevents HTTP requests to the Socket server
    */
   useEffect(() => {
-    // Load mock data once on component mount
-    loadMockData();
-    setServerStatus('connected');
-  }, []);
+    if (socket) {
+      // Listen for student connections
+      socket.on('STUDENT_CONNECTED', (data) => {
+        console.log('[Admin] New student connected:', data);
+        setConnectedStudents((prev) => [
+          ...prev,
+          {
+            id: data.studentId,
+            name: data.studentName,
+            address: '127.0.0.1',
+            port: 54321,
+            connectedAt: new Date().getTime(),
+            connected: true
+          }
+        ]);
+        setStatistics({
+          currentConnections: data.totalConnected,
+          totalConnectionsEver: Math.max(statistics.totalConnectionsEver, data.totalConnected)
+        });
+      });
+
+      // Listen for quiz completion
+      socket.on('QUIZ_COMPLETE', () => {
+        console.log('[Admin] Quiz completed');
+        setQuizStarted(false);
+      });
+
+      return () => {
+        socket.off('STUDENT_CONNECTED');
+        socket.off('QUIZ_COMPLETE');
+      };
+    }
+  }, [socket, statistics.totalConnectionsEver]);
 
   const loadMockData = () => {
     // Mock data for development/testing
@@ -86,9 +115,19 @@ const AdminDashboard = () => {
     );
 
     if (confirmStart) {
-      // Simulate quiz start (no server request needed for demo)
-      setQuizStarted(true);
-      alert('✅ Quiz started successfully!');
+      setLoading(true);
+      if (socket) {
+        console.log('[Admin] Emitting START_QUIZ event');
+        socket.emit('START_QUIZ', { studentCount: connectedStudents.length }, (response) => {
+          setLoading(false);
+          if (response && response.success) {
+            setQuizStarted(true);
+            alert('✅ Quiz started successfully!');
+          } else {
+            alert('❌ Failed to start quiz: ' + (response?.error || 'Unknown error'));
+          }
+        });
+      }
     }
   };
 
