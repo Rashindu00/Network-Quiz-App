@@ -62,19 +62,26 @@ io.on('connection', (socket) => {
 
   // Student: Register
   socket.on('REGISTER', (data, callback) => {
-    const { studentName } = data;
-    console.log(`[Student Register] ${studentName} (${socket.id})`);
+    const { name } = data;
+    console.log(`[Student Register] ${name} (${socket.id})`);
     
     connectedStudents.set(socket.id, {
       id: socket.id,
-      name: studentName,
+      name: name,
       connectedAt: new Date()
+    });
+    
+    // Send success response back to student
+    socket.emit('REGISTRATION_SUCCESS', {
+      success: true,
+      studentId: socket.id,
+      studentName: name
     });
     
     // Notify admin of new student
     io.emit('STUDENT_CONNECTED', {
       studentId: socket.id,
-      studentName: studentName,
+      studentName: name,
       totalConnected: connectedStudents.size
     });
     

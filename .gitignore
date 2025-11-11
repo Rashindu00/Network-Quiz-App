@@ -48,4 +48,4 @@ yarn-error.log*
 Thumbs.db
 
 # Misc
-.env
+config.bat
