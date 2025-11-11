@@ -1,5 +1,6 @@
 package com.quizapp.server;
 
+import com.quizapp.model.StudentInfo;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -21,12 +22,16 @@ public class ConnectedClientsManager {
     // Map for quick client lookup by ID
     private final ConcurrentHashMap<String, ClientHandler> clientMap;
     
+    // Map for student information
+    private final ConcurrentHashMap<String, StudentInfo> studentInfoMap;
+    
     // Statistics
     private int totalConnectionsEver = 0;
     
     public ConnectedClientsManager() {
         this.connectedClients = new CopyOnWriteArrayList<>();
         this.clientMap = new ConcurrentHashMap<>();
+        this.studentInfoMap = new ConcurrentHashMap<>();
     }
     
     /**
@@ -104,6 +109,28 @@ public class ConnectedClientsManager {
     }
     
     /**
+     * Register a student
+     */
+    public void registerStudent(String studentId, String name) {
+        StudentInfo studentInfo = new StudentInfo(studentId, name);
+        studentInfoMap.put(studentId, studentInfo);
+    }
+    
+    /**
+     * Get student info by ID
+     */
+    public StudentInfo getStudentInfo(String studentId) {
+        return studentInfoMap.get(studentId);
+    }
+    
+    /**
+     * Get all student information
+     */
+    public Map<String, StudentInfo> getAllStudentInfo() {
+        return new ConcurrentHashMap<>(studentInfoMap);
+    }
+    
+    /**
      * Get list of all student names
      */
     public List<String> getStudentNames() {
@@ -154,6 +181,25 @@ public class ConnectedClientsManager {
     }
     
     /**
+     * Broadcast an object to all connected clients
+     * Thread-safe method
+     */
+    public void broadcastToAll(Object message) {
+        System.out.println("Broadcasting object to " + connectedClients.size() + " clients");
+        
+        for (ClientHandler client : connectedClients) {
+            if (client.isConnected()) {
+                try {
+                    client.sendMessage(message.toString());
+                } catch (Exception e) {
+                    System.err.println("Error broadcasting to " + 
+                        client.getStudentName() + ": " + e.getMessage());
+                }
+            }
+        }
+    }
+    
+    /**
      * Broadcast a message to specific clients
      */
     public void broadcastToClients(String message, List<String> clientIds) {
@@ -172,6 +218,22 @@ public class ConnectedClientsManager {
         ClientHandler client = clientMap.get(clientId);
         if (client != null && client.isConnected()) {
             client.sendMessage(message);
+        } else {
+            System.err.println("Client not found or disconnected: " + clientId);
+        }
+    }
+    
+    /**
+     * Send an object to a specific client
+     */
+    public void sendToClient(String clientId, Object message) {
+        ClientHandler client = clientMap.get(clientId);
+        if (client != null && client.isConnected()) {
+            try {
+                client.sendMessage(message.toString());
+            } catch (Exception e) {
+                System.err.println("Error sending object to " + clientId + ": " + e.getMessage());
+            }
         } else {
             System.err.println("Client not found or disconnected: " + clientId);
         }

@@ -10,13 +10,13 @@ import java.util.concurrent.*;
  * Demonstrates: ServerSocket, Socket, Multithreading
  * 
  * This server:
- * 1. Initializes ServerSocket on port 8080
+ * 1. Initializes ServerSocket on port 5000
  * 2. Accepts multiple client connections
  * 3. Creates a new thread for each client
  * 4. Maintains a list of connected clients
  */
 public class QuizServer {
-    private static final int PORT = 8080;
+    private static final int PORT = 5000;
     private ServerSocket serverSocket;
     private ConnectedClientsManager clientsManager;
     private ExecutorService threadPool;
