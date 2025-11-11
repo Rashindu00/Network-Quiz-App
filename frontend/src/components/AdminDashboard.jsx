@@ -10,11 +10,17 @@ import './AdminDashboard.css';
  * - Intuitive quiz control interface
  * - Beautiful card-based layout
  * - Clear visual feedback for all actions
+ * 
+ * Networking Concepts Demonstrated:
+ * - Socket.IO client-server communication
+ * - Real-time event listeners
+ * - Dynamic UI updates based on server state
  */
 const AdminDashboard = () => {
   const [connectedStudents, setConnectedStudents] = useState([]);
   const [quizStarted, setQuizStarted] = useState(false);
   const [serverStatus, setServerStatus] = useState('connected');
+  const [loading, setLoading] = useState(false);
   const [statistics, setStatistics] = useState({
     currentConnections: 0,
     totalConnectionsEver: 0

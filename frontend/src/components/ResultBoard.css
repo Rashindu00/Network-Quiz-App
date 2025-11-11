@@ -1,0 +1,248 @@
+/* ResultBoard.css - Member 4 Frontend Styling */
+
+.result-board {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f0f0f0;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner p {
+  color: #666;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.no-result {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 10px;
+  color: #666;
+}
+
+/* Result Card */
+.result-card {
+  background: white;
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.result-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 28px;
+}
+
+.student-name {
+  color: #667eea;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* Grade Circle */
+.grade-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.grade-circle {
+  width: 120px;
+  height: 120px;
+  border: 8px solid;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.grade-letter {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+/* Score Details */
+.score-details {
+  margin-bottom: 30px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #333;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* Progress Section */
+.progress-section {
+  margin-bottom: 30px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.progress-label span:first-child {
+  color: #666;
+  font-weight: 500;
+}
+
+.progress-text {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+/* Performance Message */
+.performance-message {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+.excellent {
+  background: #d4edda;
+  color: #155724;
+}
+
+.good {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.satisfactory {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.average {
+  background: #ffe5e5;
+  color: #721c24;
+}
+
+.poor {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .result-card {
+    padding: 20px;
+  }
+
+  .result-header h2 {
+    font-size: 24px;
+  }
+
+  .grade-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .grade-letter {
+    font-size: 40px;
+  }
+
+  .detail-value {
+    font-size: 16px;
+  }
+
+  .performance-message {
+    font-size: 14px;
+    padding: 15px;
+  }
+}
