@@ -28,8 +28,8 @@ public class RestApiServer {
     }
     
     public void start() throws IOException {
-        // Create HTTP server on port 8081
-        server = HttpServer.create(new InetSocketAddress(8080), 0);
+        // Create HTTP server on port 8081 (separate from Socket server)
+        server = HttpServer.create(new InetSocketAddress(8081), 0);
         
         // Add CORS headers to allow React frontend to connect
         server.createContext("/api/clients", new ClientsHandler());
@@ -38,9 +38,9 @@ public class RestApiServer {
         server.setExecutor(null); // creates a default executor
         server.start();
         
-        System.out.println("✓ REST API Server started on port: 8080");
-        System.out.println("  GET  http://localhost:8080/api/clients");
-        System.out.println("  POST http://localhost:8080/api/quiz/start\n");
+        System.out.println("✓ REST API Server started on port: 8081");
+        System.out.println("  GET  http://localhost:8081/api/clients");
+        System.out.println("  POST http://localhost:8081/api/quiz/start\n");
     }
     
     public void stop() {

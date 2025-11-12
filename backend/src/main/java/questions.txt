@@ -1,0 +1,35 @@
+# Network Programming Quiz Questions
+# Format: ID|Question|OptionA|OptionB|OptionC|OptionD|CorrectAnswer|Points|Category
+# Lines starting with # are comments
+
+# Network Basics (10 points each)
+Q1|What does TCP stand for?|Transmission Control Protocol|Transfer Control Protocol|Transport Control Protocol|Transition Control Protocol|A|10|Network Basics
+Q2|What is the default port for HTTP?|80|8080|443|8000|A|10|Network Basics
+Q4|What does IP stand for?|Internet Protocol|Internal Protocol|International Protocol|Interconnect Protocol|A|10|Network Basics
+Q7|What does DNS stand for?|Domain Name System|Domain Network System|Digital Name Service|Data Network Service|A|10|Network Services
+Q10|What is localhost IP address?|192.168.1.1|127.0.0.1|0.0.0.0|255.255.255.255|B|10|Network Basics
+
+# OSI Model & Protocols (15 points each)
+Q3|Which layer of OSI model does TCP belong to?|Physical Layer|Data Link Layer|Transport Layer|Application Layer|C|15|OSI Model
+Q5|Which protocol is connectionless?|TCP|UDP|FTP|HTTP|B|15|Protocols
+Q8|Which is NOT a private IP address range?|10.0.0.0 - 10.255.255.255|172.16.0.0 - 172.31.255.255|192.168.0.0 - 192.168.255.255|200.0.0.0 - 200.255.255.255|D|15|IP Addressing
+Q9|What is the purpose of ARP?|Resolve IP to MAC address|Resolve domain to IP|Route packets|Encrypt data|A|15|Network Protocols
+
+# Advanced Questions (20 points each)
+Q6|What is the maximum size of TCP packet?|32 KB|64 KB|128 KB|256 KB|B|20|Advanced
+Q11|What is the purpose of three-way handshake in TCP?|Establish connection|Close connection|Transfer data|Encrypt data|A|20|Advanced
+Q12|Which protocol uses port 443 by default?|HTTP|HTTPS|FTP|SSH|B|20|Security
+
+# Java Networking (15 points each)
+Q13|Which Java class is used to create a server?|Socket|ServerSocket|DatagramSocket|ServerSocket|B|15|Java Networking
+Q14|What does accept() method do in ServerSocket?|Closes the server|Listens for connections|Accepts client connection|Sends data|C|15|Java Networking
+Q15|Which stream is used for reading text from socket?|InputStream|BufferedReader|FileReader|Scanner|B|15|Java Networking
+
+# Socket Programming (20 points each)
+Q16|What happens if you don't close a socket?|Nothing|Resource leak|Compilation error|Runtime exception|B|20|Socket Programming
+Q17|Which method sends data through socket?|write()|send()|print()|println()|D|20|Socket Programming
+Q18|What is the default timeout for socket operations?|No timeout|30 seconds|60 seconds|5 minutes|A|20|Socket Programming
+
+# Multithreading (20 points each)
+Q19|Why use multithreading in server applications?|Faster execution|Handle multiple clients|Save memory|Reduce complexity|B|20|Multithreading
+Q20|Which is thread-safe collection in Java?|ArrayList|HashMap|ConcurrentHashMap|LinkedList|C|20|Multithreading

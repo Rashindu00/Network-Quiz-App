@@ -22,4 +22,209 @@ code {
 
 .App {
   min-height: 100vh;
+  position: relative;
+}
+
+/* Mode Selection Screen */
+.mode-select {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.mode-container {
+  max-width: 900px;
+  width: 100%;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-title {
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-subtitle {
+  color: white;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 50px;
+  opacity: 0.95;
+}
+
+.mode-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.mode-card {
+  background: white;
+  border: none;
+  border-radius: 20px;
+  padding: 50px 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.mode-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mode-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.mode-card:hover::before {
+  opacity: 1;
+}
+
+.mode-card:hover * {
+  color: white;
+}
+
+.card-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.mode-card h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.mode-card p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.card-arrow {
+  font-size: 2rem;
+  color: #667eea;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.mode-card:hover .card-arrow {
+  color: white;
+  transform: translateX(10px);
+}
+
+.mode-footer {
+  text-align: center;
+  color: white;
+  margin-top: 50px;
+}
+
+.mode-footer p {
+  margin: 5px 0;
+  font-size: 1rem;
+}
+
+.version {
+  font-size: 0.85rem !important;
+  opacity: 0.8;
+}
+
+/* Back Button */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  color: #667eea;
+}
+
+.back-button:hover {
+  transform: translateX(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .app-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  .mode-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .mode-card {
+    padding: 40px 25px;
+  }
+
+  .card-icon {
+    font-size: 4rem;
+  }
+
+  .mode-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .back-button {
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
 }

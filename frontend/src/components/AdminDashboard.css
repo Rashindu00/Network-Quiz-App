@@ -50,6 +50,48 @@
   gap: 1rem;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Header Back Button */
+.header-back-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.938rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.header-back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-arrow {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.header-back-button:hover .back-arrow {
+  transform: translateX(-3px);
+}
+
+.back-text {
+  font-weight: 600;
+}
+
 .header-left .logo-section {
   display: flex;
   align-items: center;
@@ -136,14 +178,7 @@
 }
 
 /* ========== MAIN CONTENT ========== */
-.dashboard-main {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
+
 
 /* ========== STATISTICS SECTION ========== */
 .stats-section {
@@ -752,6 +787,24 @@
     align-items: flex-start;
   }
 
+  .header-left {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .header-back-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .back-text {
+    display: none;
+  }
+
+  .back-arrow {
+    font-size: 1.5rem;
+  }
+
   .dashboard-title {
     font-size: 1.5rem;
   }
@@ -816,3 +869,4 @@
 .student-card:nth-child(4) { animation-delay: 0.2s; }
 .student-card:nth-child(5) { animation-delay: 0.25s; }
 .student-card:nth-child(6) { animation-delay: 0.3s; }
+

@@ -35,9 +35,10 @@ public class QuizServer {
      */
     public void start() {
         try {
-            // Start REST API Server for admin dashboard
-            restApiServer = new RestApiServer(clientsManager, this);
-            restApiServer.start();
+            // REST API Server disabled - Frontend uses mock data
+            // Uncomment below to enable REST API on port 8081:
+            // restApiServer = new RestApiServer(clientsManager, this);
+            // restApiServer.start();
             
             serverSocket = new ServerSocket(PORT);
             running = true;
